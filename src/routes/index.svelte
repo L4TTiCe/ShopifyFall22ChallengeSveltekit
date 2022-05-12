@@ -1,9 +1,21 @@
-<h1>Inventory Management</h1>
+<h1 class="text-2xl font-semibold font-mono">Inventory Management</h1>
 
-<p>Supported Operations: </p>
-    <ul>
-        <li>Create Item</li>
-        <li>Retrieve Items</li>
-        <li>Update Item</li>
-        <li>Delete Item</li>
-    </ul>
+<div class="pl-2 flex flex-col md:flex-row">
+    <div class="flex-auto p-4 shadow-lg">
+		<h3 class="text-lg font-mono pt-2 font-medium">Supported Operations</h3>
+		<ul class="pl-4">
+			<li class="underline hover:no-underline hover:text-blue-800">
+				<a href="inventory/add">Create Item</a>
+			</li>
+			<li class="underline hover:no-underline hover:text-blue-800">
+				<a href="inventory/view">Retrieve Items</a>
+			</li>
+            <li class="underline hover:no-underline hover:text-blue-800">
+				<a href="inventory/update">Update Item</a>
+			</li>
+            <li class="underline hover:no-underline hover:text-blue-800">
+				<a href="inventory/delete">Delete Item</a>
+			</li>
+		</ul>
+	</div>
+</div>
