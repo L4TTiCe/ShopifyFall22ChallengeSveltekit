@@ -4,7 +4,7 @@ import { Status } from "$lib/status";
 
 let inventoryDB: Map<string, Inventory> = new Map();
 
-function addInventory(item: Inventory): Message {
+export function addInventory(item: Inventory): Message {
     if (inventoryDB.has(item._id)) {
         return new Message(Status.FAILED, "ID already exists.");
     } else {
@@ -13,11 +13,19 @@ function addInventory(item: Inventory): Message {
     }
 }
 
-function getAllItems(): Inventory[] {
+export function getAllItems(): Inventory[] {
     return Array.from(inventoryDB.values());
 }
 
-function updateInventory(item: Inventory): Message {
+export function getItemById(id: string): Message {
+    if (inventoryDB.has(id)) {
+        return new Message(Status.SUCCESS, "Fetched sucessfully", inventoryDB.get(id))
+    } else {
+        return new Message(Status.FAILED, "No Item with provided ID")
+    }
+}
+
+export function updateInventory(item: Inventory): Message {
     if (inventoryDB.has(item._id)) {
         inventoryDB.set(item._id, item);
         return new Message(Status.SUCCESS, "Inventory Item Updated");
@@ -26,7 +34,7 @@ function updateInventory(item: Inventory): Message {
     }
 }
 
-function deleteInventoryById(id: string): Message {
+export function deleteInventoryById(id: string): Message {
     if (inventoryDB.delete(id)) {
         return new Message(Status.SUCCESS, "Inventory Item Deleted");
     } else {

@@ -3,5 +3,5 @@ export interface Inventory {
 	name?: string;
     description?: string;
     quantity?: number;
-    createdOn?: Date;
+    created_on?: string;
 }
