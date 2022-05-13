@@ -24,6 +24,10 @@ export function logDeletion(item: Inventory | undefined, deletion_comment: strin
     return new Message(Status.FAILED, "No item received.");
 }
 
+export function getAllEntries(): DeletedInventory[] {
+    return Array.from(deletionLogDB.values());
+}
+
 export function revertDeletionById(id: string): Message {
     if (deletionLogDB.has(id)) {
         if (InventoryService.hasId(id)) {
@@ -32,6 +36,7 @@ export function revertDeletionById(id: string): Message {
             const itemToRestore = deletionLogDB.get(id);
             if (itemToRestore) {
                 InventoryService.addInventory(itemToRestore);
+                purgeLogById(id);
                 return new Message(Status.SUCCESS, "ID restored");
             }
             return new Message(Status.FAILED, "Error Restoring ID. Contact Support.");

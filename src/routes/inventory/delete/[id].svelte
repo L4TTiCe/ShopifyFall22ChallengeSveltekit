@@ -37,9 +37,11 @@
     function handleDelete(): void {
         const result = deleteInventoryById(id, deletion_comment);
         alert(result.message)
-        if (result.status = Status.SUCCESS) {
-            goto("inventory/view")
-        } 
+        if (result.status == Status.SUCCESS) {
+            goto("/inventory/view")
+        } else {
+            console.log(result)
+        }
     }
 </script>
 

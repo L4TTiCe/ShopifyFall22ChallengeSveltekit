@@ -14,10 +14,10 @@
 			active = 'add';
 		} else if (url.includes('delete')) {
 			active = 'delete';
-		} else if (url.includes('view')) {
-			active = 'view';
 		} else if (url.includes('update')) {
 			active = 'update';
+		} else if (url.includes('log')) {
+			active = 'log';
 		} else {
 			active = 'view';
 		}
@@ -46,6 +46,11 @@
 	<li class="flex-1 mr-2">
 		<a class={active == 'delete' ? active_classes : inactive_classes} href="/inventory/delete"
 			>Delete from Inventory</a
+		>
+	</li>
+	<li class="flex-1 mr-2">
+		<a class={active == 'log' ? active_classes : inactive_classes} href="/inventory/log"
+			>Deletion Log</a
 		>
 	</li>
 </ul>
