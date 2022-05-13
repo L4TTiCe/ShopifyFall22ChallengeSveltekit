@@ -10,7 +10,6 @@
     export let handleDelete: any = null;
 </script>
 
-<div class="pl-2 flex flex-col md:flex-row">
     <div class="flex-auto p-4 shadow-lg">
         <h3 class="text-lg font-mono pt-2 font-medium">{name}</h3>
         <ul class="pl-4">
@@ -47,4 +46,3 @@
         </div>
         {/if}
     </div>
-</div>

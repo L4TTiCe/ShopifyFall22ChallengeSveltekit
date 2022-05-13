@@ -28,7 +28,8 @@
 
 Inventory has {inventoryItems.length} items.
 
-{#each inventoryItems as item}
+<div class="pl-2 flex flex-col flex-wrap md:flex-row">
+    {#each inventoryItems as item}
     <InventoryCard
         bind:id = {item._id} 
         bind:name = {item.name}
@@ -37,6 +38,7 @@ Inventory has {inventoryItems.length} items.
         bind:created_on = {item.created_on}
     /> 
 {/each}
+</div>
 
 <div class="p-4 m-4">
     <span class="text-lg font-mono pt-2 font-bold">Table view</span>
