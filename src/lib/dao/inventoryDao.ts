@@ -14,7 +14,7 @@ const inventoryDB: Map<string, Inventory> = new Map();
 /**
  * Adds a new {@link Inventory} Item to the DB.
  *
- * @param id {string} - the ID of the Inventory Item
+ * @param item {Inventory} - the {@link Inventory} Item to be inserted
  * @return {Message} - the status of the insertion operation.
  */
 export function addInventory(item: Inventory): Message {
