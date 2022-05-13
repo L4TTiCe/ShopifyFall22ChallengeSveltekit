@@ -1,3 +1,7 @@
+/**
+ * Represents a Deleted Inventory Item
+ * @public
+ */
 export interface DeletedInventory {
 	_id: string;
 	name?: string;

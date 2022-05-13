@@ -10,6 +10,25 @@
 	export let handleDelete: any = null;
 </script>
 
+<!-- 
+	@component
+	A styled card showing an Inventory Item's details
+
+	Usage:
+	```tsx
+	<InventoryCard
+		id={inventoryItem_id}
+		name={inventoryItem.name}
+		description={inventoryItem.description}
+		quantity={inventoryItem.quantity?.toString()}
+		created_on={inventoryItem.created_on}
+		show_buttons={true}  // optional
+		{handleUpdate}		// optional
+		{handleDelete}		// optional
+	/>
+	```
+ -->
+
 <div class="flex-auto p-4 shadow-lg">
 	<h3 class="text-lg font-mono pt-2 font-medium">{name}</h3>
 	<ul class="pl-4">

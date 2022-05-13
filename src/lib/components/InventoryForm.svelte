@@ -13,10 +13,33 @@
 	export let button_text: string;
 
 	export let disable_id = false;
+
+	/**
+	 * Generates a new ID for the Inventory Item.
+	 */
 	function generateID() {
 		id = uuidv4();
 	}
 </script>
+<!-- 
+	@component
+	A form that shows all relavant details about an Inventory Item.
+
+	Usage:
+	```tsx
+	<InventoryForm
+		bind:id
+		bind:name
+		bind:description
+		bind:quantity
+		bind:created_on
+		bind:status_message
+		{handleSubmit}
+		button_text={'Update Item'}  // What the submit button should read
+		disable_id={true}	// If the ID of the object should be editable
+	/>
+	```
+ -->
 
 <form class="w-full max-w-lg mx-4">
 	<div class="flex flex-wrap -mx-3 mb-6">
