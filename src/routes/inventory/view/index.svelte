@@ -16,6 +16,8 @@
 
     export let inventoryItems: Inventory[];
 
+    const MAX_CARDS = 10;
+
     function refreshData() {
         inventoryItems = getAllItems();
     }
@@ -29,15 +31,16 @@
 Inventory has {inventoryItems.length} items.
 
 <div class="pl-2 flex flex-col flex-wrap md:flex-row">
-    {#each inventoryItems as item}
-    <InventoryCard
-        bind:id = {item._id} 
-        bind:name = {item.name}
-        bind:description = {item.description}
-        bind:quantity = {item.quantity}
-        bind:created_on = {item.created_on}
-    /> 
-{/each}
+    {#each inventoryItems.slice(0, MAX_CARDS) as item}
+        
+        <InventoryCard
+            bind:id = {item._id} 
+            bind:name = {item.name}
+            bind:description = {item.description}
+            bind:quantity = {item.quantity}
+            bind:created_on = {item.created_on}
+        /> 
+    {/each}
 </div>
 
 <div class="p-4 m-4">
