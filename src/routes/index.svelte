@@ -30,7 +30,7 @@
 		<h3 class="text-lg font-mono pt-2 font-medium">Submitted By</h3>
 		<ul class="pl-4">
 			<li class="underline hover:no-underline hover:text-blue-800">
-				<a href="inventory/add">Dheshan Mohandass</a>
+				<a href="https://github.com/L4TTiCe">Dheshan Mohandass</a>
 			</li>
 		</ul>
 	</div>

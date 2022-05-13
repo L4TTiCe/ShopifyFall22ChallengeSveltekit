@@ -1,0 +1,5 @@
+language = "nix"
+onBoot = ["npm", "ci"]
+run = ["npm", "run", "dev"]
+
+entrypoint = "src/routes/index.svelte"
