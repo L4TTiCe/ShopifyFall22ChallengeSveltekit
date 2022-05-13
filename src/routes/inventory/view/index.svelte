@@ -10,34 +10,32 @@
 </script>
 
 <script lang="ts">
-    import {getAllItems} from '$lib/dao/inventoryDao';
+    import {deleteInventoryById, getAllItems, getItemById} from '$lib/dao/inventoryDao';
     import type { Inventory } from '$lib/models/inventory';
+    import InventoryCard from '$lib/components/InventoryCard.svelte';
 
     export let inventoryItems: Inventory[];
+
+    function refreshData() {
+        inventoryItems = getAllItems();
+    }
+
+    function handleDelete(id: string): void {
+        deleteInventoryById(id);
+        refreshData();
+    }
 </script>
 
 Inventory has {inventoryItems.length} items.
 
 {#each inventoryItems as item}
-    <div class="pl-2 flex flex-col md:flex-row">
-        <div class="flex-auto p-4 shadow-lg">
-            <h3 class="text-lg font-mono pt-2 font-medium">{item.name}</h3>
-            <ul class="pl-4">
-                <li class="underline hover:no-underline hover:text-blue-800">
-                    <a href="/inventory/view/{item._id}">ID: {item._id}</a>
-                </li>
-                <li>
-                    <span>Description: {item.description}</span>
-                </li>
-                <li>
-                    <span>Qty: {item.quantity}</span>
-                </li>
-                <li>
-                    <span>created on: {item.created_on}</span>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <InventoryCard
+        bind:id = {item._id} 
+        bind:name = {item.name}
+        bind:description = {item.description}
+        bind:quantity = {item.quantity}
+        bind:created_on = {item.created_on}
+    /> 
 {/each}
 
 <div class="p-4 m-4">
@@ -54,6 +52,7 @@ Inventory has {inventoryItems.length} items.
             <th class="border border-slate-600 p-4 text-left">Created on</th>
             <th class="border border-slate-600 p-4 text-left">View</th>
             <th class="border border-slate-600 p-4 text-left">Update</th>
+            <th class="border border-slate-600 p-4 text-left">Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -66,6 +65,7 @@ Inventory has {inventoryItems.length} items.
             <td class="border border-slate-700 p-2 text-left">{item.created_on}</td>
             <td class="border border-slate-700 p-2 text-left"><a class="underline hover:no-underline hover:text-blue-800" href="/inventory/view/{item._id}">View</a></td>
             <td class="border border-slate-700 p-2 text-left"><a class="underline hover:no-underline hover:text-blue-800" href="/inventory/update/{item._id}">Update</a></td>
+            <td class="border border-slate-700 p-2 text-left"><span class="underline hover:no-underline hover:text-red-800" on:click={() => handleDelete(item._id)}>Delete</span></td>
         </tr>
         {/each}
     </tbody>
