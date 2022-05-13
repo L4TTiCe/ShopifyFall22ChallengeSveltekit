@@ -10,12 +10,79 @@
 </script>
 
 <script lang="ts">
-    import {getAllItems} from '$lib/dao/inventoryDao';
+    import {getAllItems, getItemById, updateInventory} from '$lib/dao/inventoryDao';
     import type { Inventory } from '$lib/models/inventory';
+    import InventoryForm from '$lib/components/InventoryForm.svelte';
 
     let selected: string;
+    let inventoryId: string = '';
 
     export let inventoryItems: Inventory[];
+
+    let id: string = '';
+	let name: string = '';
+	let description: string = '';
+
+	let quantity: string = '';
+	let created_on: string = new Date().toISOString().slice(0, 10); 
+
+	let status_message = '';
+
+    function refreshData() {
+        inventoryItems = getAllItems();
+    }
+
+    function validateInventoryItem(item: Inventory): boolean {
+        if (item.name == '') {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function handleSubmit() {
+        let inventoryitem: Inventory = {
+            _id: id,
+            name: name,
+            description: description,
+            quantity: +quantity,
+            created_on: created_on
+        }
+
+        if (validateInventoryItem(inventoryitem)) {
+            alert('Item Updated!');
+			updateInventory(inventoryitem);
+			resetData();
+            refreshData();
+            selected = '';
+        } else {
+			status_message = 'Name is a required field.';
+		}
+    }
+
+    function resetData() {
+		id = '';
+		name = '';
+		description = '';
+		quantity = '';
+		created_on = new Date().toISOString().slice(0, 10); 
+	}
+
+    $: if (selected && selected != inventoryId) {
+        resetData();
+        const selectedItemData = getItemById(selected);
+        if (selectedItemData.item) {
+            id = selectedItemData.item._id;
+            if (selectedItemData.item.name)
+                name = selectedItemData.item.name;
+            if (selectedItemData.item.description)
+                description = selectedItemData.item.description;
+            if (selectedItemData.item.quantity)
+                quantity = selectedItemData.item.quantity.toString();
+            if (selectedItemData.item.created_on)
+                created_on = selectedItemData.item.created_on;
+        }
+    }
 </script>
 
 <h2 class="text-2xl m-4">Update Item</h2>
@@ -37,7 +104,7 @@
                 id="grid-username"
                 placeholder="Choose group to update"
             >
-                <option value="" selected disabled hidden
+                <option value={''} selected 
                     >{inventoryItems.length == 0 ? 'No Groups' : 'Choose Item'}</option
                 >
                 {#each inventoryItems as item}
@@ -48,4 +115,19 @@
             </select>
         </div>
     </div>
+
+    {#if selected}
+        <InventoryForm 
+            bind:id
+            bind:name
+            bind:description
+            bind:quantity
+            bind:created_on
+
+            bind:status_message
+            handleSubmit = {handleSubmit}
+            button_text = {"Update Item"}
+            disable_id = {true}
+        />
+    {/if}
 </form>
