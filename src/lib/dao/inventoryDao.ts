@@ -1,6 +1,7 @@
 import type { Inventory } from "$lib/models/inventory";
 import { Message } from "$lib/message";
 import { Status } from "$lib/status";
+import * as DeletionLogService from "$lib/dao/deletionLogDao"
 
 const inventoryDB: Map<string, Inventory> = new Map();
 
@@ -15,6 +16,10 @@ export function addInventory(item: Inventory): Message {
 
 export function getAllItems(): Inventory[] {
     return Array.from(inventoryDB.values());
+}
+
+export function hasId(id: string): boolean {
+    return inventoryDB.has(id);
 }
 
 export function getItemById(id: string): Message {
@@ -34,9 +39,11 @@ export function updateInventory(item: Inventory): Message {
     }
 }
 
-export function deleteInventoryById(id: string): Message {
-    if (inventoryDB.delete(id)) {
-        return new Message(Status.SUCCESS, "Inventory Item Deleted");
+export function deleteInventoryById(id: string, deletion_comment: string): Message {
+    if (inventoryDB.has(id)) {
+        DeletionLogService.logDeletion(inventoryDB.get(id), deletion_comment);
+        inventoryDB.delete(id)
+        return new Message(Status.SUCCESS, "Inventory Item Logged and Deleted");
     } else {
         return new Message(Status.FAILED, "No Such ID in InventoryDB");
     }

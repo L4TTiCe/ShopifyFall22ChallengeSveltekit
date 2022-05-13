@@ -13,8 +13,7 @@
     }
 
     function handleDelete(): void {
-        deleteInventoryById($page.params.id);
-        goto("/inventory/view");
+        goto("/inventory/delete/" + $page.params.id);
     }
 </script>
 

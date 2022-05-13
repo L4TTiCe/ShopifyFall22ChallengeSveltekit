@@ -5,7 +5,7 @@
     import type { Message } from '$lib/message';
     import { Status } from '$lib/status';
     import InventoryForm from '$lib/components/InventoryForm.svelte';
-import { goto } from '$app/navigation';
+    import { goto } from '$app/navigation';
 
     export const inventoryItemMessage: Message = getItemById($page.params.id);
 

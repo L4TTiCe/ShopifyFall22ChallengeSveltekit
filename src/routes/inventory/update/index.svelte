@@ -105,7 +105,7 @@
                 placeholder="Choose group to update"
             >
                 <option value={''} selected 
-                    >{inventoryItems.length == 0 ? 'No Groups' : 'Choose Item'}</option
+                    >{inventoryItems.length == 0 ? 'No Items' : 'Choose Item'}</option
                 >
                 {#each inventoryItems as item}
                     <option value={item._id}>

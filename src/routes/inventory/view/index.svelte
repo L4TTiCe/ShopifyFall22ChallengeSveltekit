@@ -10,22 +10,13 @@
 </script>
 
 <script lang="ts">
-    import {deleteInventoryById, getAllItems, getItemById} from '$lib/dao/inventoryDao';
+    import { getAllItems } from '$lib/dao/inventoryDao';
     import type { Inventory } from '$lib/models/inventory';
     import InventoryCard from '$lib/components/InventoryCard.svelte';
 
     export let inventoryItems: Inventory[];
 
     const MAX_CARDS = 10;
-
-    function refreshData() {
-        inventoryItems = getAllItems();
-    }
-
-    function handleDelete(id: string): void {
-        deleteInventoryById(id);
-        refreshData();
-    }
 </script>
 
 Inventory has {inventoryItems.length} items.
@@ -70,7 +61,7 @@ Inventory has {inventoryItems.length} items.
             <td class="border border-slate-700 p-2 text-left">{item.created_on}</td>
             <td class="border border-slate-700 p-2 text-left"><a class="underline hover:no-underline hover:text-blue-800" href="/inventory/view/{item._id}">View</a></td>
             <td class="border border-slate-700 p-2 text-left"><a class="underline hover:no-underline hover:text-blue-800" href="/inventory/update/{item._id}">Update</a></td>
-            <td class="border border-slate-700 p-2 text-left"><span class="underline hover:no-underline hover:text-red-800" on:click={() => handleDelete(item._id)}>Delete</span></td>
+            <td class="border border-slate-700 p-2 text-left"><a class="underline hover:no-underline hover:text-red-800" href="/inventory/delete/{item._id}">Delete</a></td>
         </tr>
         {/each}
     </tbody>

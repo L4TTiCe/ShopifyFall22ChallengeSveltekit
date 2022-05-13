@@ -45,7 +45,7 @@
 	</li>
 	<li class="flex-1 mr-2">
 		<a class={active == 'delete' ? active_classes : inactive_classes} href="/inventory/delete"
-			>Remove Inventory</a
+			>Delete from Inventory</a
 		>
 	</li>
 </ul>
