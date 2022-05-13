@@ -8,7 +8,7 @@
 	let description: string = '';
 
 	let quantity: string = '';
-	let created_on: string = new Date().toISOString().slice(0, 10); 
+	let created_on: string = new Date().toISOString().slice(0, 16);
 
 	let status_message = '';
 
@@ -25,7 +25,7 @@
 		name = '';
 		description = '';
 		quantity = '';
-		created_on = new Date().toISOString().slice(0, 10); 
+		created_on = new Date().toISOString().slice(0, 16); 
 	}
 
     function handleSubmit() {

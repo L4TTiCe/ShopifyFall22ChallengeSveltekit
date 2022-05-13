@@ -2,7 +2,7 @@ import type { Inventory } from "$lib/models/inventory";
 import { Message } from "$lib/message";
 import { Status } from "$lib/status";
 
-let inventoryDB: Map<string, Inventory> = new Map();
+const inventoryDB: Map<string, Inventory> = new Map();
 
 export function addInventory(item: Inventory): Message {
     if (inventoryDB.has(item._id)) {

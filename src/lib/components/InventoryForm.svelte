@@ -125,7 +125,7 @@
             </label>
             <input
                 bind:value={created_on}
-                type="date"
+                type="datetime-local"
                 class="border-gray-200 appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-procured"
             />
