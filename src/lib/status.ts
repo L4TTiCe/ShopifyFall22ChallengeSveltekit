@@ -1,4 +1,4 @@
 export enum Status {
-    SUCCESS,
-    FAILED
+	SUCCESS,
+	FAILED
 }
