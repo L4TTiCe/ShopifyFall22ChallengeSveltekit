@@ -1,5 +1,5 @@
 language = "nix"
 onBoot = ["npm", "ci"]
-run = ["npm", "run", "dev"]
+run = "npm run build && npm run preview"
 
 entrypoint = "src/routes/index.svelte"
